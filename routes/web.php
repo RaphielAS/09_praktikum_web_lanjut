@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('mahasiswas', [MahasiswaController::class]);
+Route::resource('mahasiswas', MahasiswaController::class);
