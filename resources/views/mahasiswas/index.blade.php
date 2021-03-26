@@ -1,3 +1,6 @@
+<?php
+    use App\Models\Mahasiswa;
+?>
 @extends('mahasiswas.layout')
 @section('content')
  <div class="row">
@@ -26,7 +29,10 @@
  <th>No_Handphone</th>
  <th width="280px">Action</th>
  </tr>
- @foreach ($mahasiswas as $Mahasiswa)
+ <?php
+    $mahasiswas2 = Mahasiswa::paginate(5);
+ ?>
+ @foreach ($mahasiswas2 as $Mahasiswa)
  <tr>
 
  <td>{{ $Mahasiswa->Nim }}</td>
@@ -46,4 +52,5 @@
  </tr>
  @endforeach
  </table>
+ {{$mahasiswas2->links('pagination::bootstrap-4')}}
 @endsection
