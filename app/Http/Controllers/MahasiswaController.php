@@ -33,7 +33,8 @@ class MahasiswaController extends Controller
     }
     public function create()
     {
-        return view('mahasiswas.create');
+        $kelas = Kelas::all();
+        return view('mahasiswas.create', ['kelas' => $kelas]);
     }
     public function store(Request $request)
     {
@@ -45,8 +46,20 @@ class MahasiswaController extends Controller
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
         ]);
-        //fungsi eloquent untuk menambah data
-        Mahasiswa::create($request->all());
+        $Mahasiswa = new Mahasiswa;
+        $Mahasiswa->nim = $request->get('Nim');
+        $Mahasiswa->nama = $request->get('Nama');
+        $Mahasiswa->email = $request->get('email');
+        $Mahasiswa->jurusan = $request->get('Jurusan');
+        $Mahasiswa->tanggallahir = $request->get('tanggallahir');
+        $Mahasiswa->no_handphone = $request->get('No_Handphone');
+
+        $kelas = new kelas;
+        $kelas->id=$request->get('Kelas');
+
+        //fungsi eloquent untuk menambah data dengan relasi belongsto
+        $Mahasiswa->kelas()->associate($kelas);
+        $Mahasiswa->save();
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('mahasiswas.index')
             ->with('success', 'Mahasiswa Berhasil Ditambahkan');
