@@ -25,7 +25,7 @@
         <tbody>
             @foreach ($nilai as $khs)
             <tr>
-                <th>{{__($khs->matakuliah->Nama_matkul)}}</th>
+                <th>{{__($khs->matakuliah->nama_matkul)}}</th>
                 <th>{{__($khs->matakuliah->sks)}}</th>
                 <th>{{__($khs->matakuliah->semester)}}</th>
                 <td>{{__($khs->nilai)}}</td>
